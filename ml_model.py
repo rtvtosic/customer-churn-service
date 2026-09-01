@@ -1,11 +1,13 @@
-import mlflow
+import pickle
 
 
-def load_model(experiment: str = "Telco Customer Churn",
-               tracking_uri: str = "http://localhost:5000"):
-    mlflow.set_experiment(experiment)
-    mlflow.set_tracking_uri(tracking_uri)
-
-    model = mlflow.sklearn.load_model("models:/telco-churn-RandomForest@champion")
+def load_model(model_dir: str = "final_model"):
+    with open(f"{model_dir}/model.pkl", 'rb') as f:
+        model = pickle.load(f)
 
     return model
+
+
+if __name__ == "__main__":
+    model = load_model()
+    print(model)
