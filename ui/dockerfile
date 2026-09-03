@@ -1,0 +1,18 @@
+FROM python:3.12-slim
+
+# установка рабочей директории
+WORKDIR /app
+
+# копирование файла зависимостей в контейнер
+COPY requirements.txt .
+
+# установка зависимостей без кеша
+RUN pip install --no-cache-dir -r requirements.txt
+
+# копирование файлов сервиса
+COPY . .
+
+# команда для запуска контейнера
+CMD ["streamlit", "run", "ui.py", \
+     "--server.address=0.0.0.0", \
+     "--server.port=8501"]

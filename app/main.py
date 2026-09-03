@@ -4,7 +4,7 @@ import pandas as pd
 from fastapi import FastAPI
 
 from user_data import UserData
-from ml_model import load_model
+from model_loader import load_model
 
 
 app = FastAPI()
